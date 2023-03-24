@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { red,  } from '@mui/material/colors';
+import { red, } from '@mui/material/colors';
 
 
 export const lightTheme = createTheme({
@@ -13,7 +13,8 @@ export const lightTheme = createTheme({
     },
     info: {
       main: '#fff'
-    }
+    },
+
   },
   components: {
     MuiLink: {
@@ -47,6 +48,10 @@ export const lightTheme = createTheme({
         subtitle1: {
           fontSize: 18,
           fontWeight: 600
+        },
+      
+        root: {
+          fontSize: "1.6rem"
         }
       }
     },
@@ -71,8 +76,6 @@ export const lightTheme = createTheme({
         }
       }
     },
-
-
     MuiCard: {
       defaultProps: {
         elevation: 0
@@ -83,7 +86,12 @@ export const lightTheme = createTheme({
           borderRadius: '10px',
         }
       }
+    },
+    MuiCircularProgress: {
+      defaultProps: {
+        color: "info"
+      }
     }
-    
+
   }
 });
