@@ -16,7 +16,7 @@ export const styles = {
         padding: "2%"
     },
     name: {
-        fontWeight: 500
+        fontWeight: 700
     },
     abilities: {
         display: "flex"
@@ -25,7 +25,7 @@ export const styles = {
         marginRight: '2%',
     },
     cardContainerText: {
-        backgroundColor: 'info.main',
+        backgroundColor: '#fff',
         height: { xs: "26%", md: "32%" },
         padding: "2% 6%"
     },

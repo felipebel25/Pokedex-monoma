@@ -1,5 +1,5 @@
 {
-  "name": "Pokedex-monoma technology",
+  "name": "Monomapokedex",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "node prod-server.js",
     "lint": "next lint",
-    "cypress": "node server.js cypress open"
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

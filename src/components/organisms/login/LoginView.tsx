@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Box, Button, Chip, CircularProgress, Grid, IconButton, InputAdornment, TextField, Typography } from "@mui/material"
 import { useForm } from "react-hook-form";
 
-import { AuthContext } from "@/context";
+import { AuthContext } from "@context";
 import { ErrorOutline, Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { styles } from "./stylesLoginView";
@@ -49,9 +49,10 @@ export const LoginView = () => {
                         <Typography variant="h1" component='h1'>Iniciar Sesión</Typography>
                     </Grid>
                     {/* ---------Input Email--------- */}
-                    <Grid item xs={12} mt={4} mb={4}>
+                    <Grid item xs={13} mt={4} mb={4}>
                         <TextField
                             fullWidth
+                            sx={styles.input}
                             variant="outlined"
                             type="email"
                             label='Correo'
@@ -63,8 +64,10 @@ export const LoginView = () => {
                             error={!!errors.email}
                             helperText={errors.email?.message}
                             InputLabelProps={{
-                                shrink: true
+                                shrink: true,
+                                style: { fontSize: "1.4rem" }
                             }}
+                            InputProps={{ style: { fontSize: '1.4rem' } }}
                         />
                     </Grid>
                     <Grid mb={4} item xs={12} >
@@ -78,10 +81,13 @@ export const LoginView = () => {
                             {...register('password', {
                                 required: 'Este campo es requerido',
                             })}
+                            
                             InputLabelProps={{
                                 shrink: true,
+                                style: { fontSize: "1.4rem" }
                             }}
                             InputProps={{
+                                style: { fontSize: '1.4rem' },
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <IconButton

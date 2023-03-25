@@ -4,6 +4,15 @@ Esta es una prueba tecnica que utiliza Next.js, variables de entorno, MUI y Type
 
 la api que se uso fue https://pokeapi.co/
 
+Este proyecto consta de 3 paginas
+/auth/login
+/
+/profile
+
+donde / es el dashboard con el listado y paginacion de los pokemones
+
+por mas practicidad en vez de usar el localstorage utilize cookies y ya que es mas usado para autorizacion o personalmente he manejado mas con cookies los token
+
 ## Getting Started
 
 Primero que todo debes de instalar las librerias
@@ -40,7 +49,7 @@ pnpm dev
 Para correr el proyecto se necesitan usar variables de entorno
 las deje en el archivo .env.template
 
-para correr las pruebas se usaria
+para correr las pruebas debes tener corriendo el proyecto y despues correr:
 
 ```bash
 npm run cypress
