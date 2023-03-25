@@ -1,11 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mi aplicación de Next.js
+
+Esta es una prueba tecnica que utiliza Next.js, variables de entorno, MUI y TypeScript.
+
+la api que se uso fue https://pokeapi.co/
 
 ## Getting Started
 
-for docker run
-sudo docker-compose up -d
+Primero que todo debes de instalar las librerias
 
-First, run the development server:
+```bash
+npm install
+# or
+yarn install
+```
+
+Para usar el proyecto en produccion:
+
+1. Primero hacer un yarn build
+2. hacer un
+
+```bash
+npm run start
+# or
+yarn start
+# or
+pnpm start
+```
+
+Para usar el proyecto en desarrollo:
 
 ```bash
 npm run dev
@@ -15,24 +37,22 @@ yarn dev
 pnpm dev
 ```
 
-configurar las variables de entorno
-mongodb url local:
-MONGO_URL=mongodb://localhost:27017/teslodb
+Para correr el proyecto se necesitan usar variables de entorno
+las deje en el archivo .env.template
 
-llenar base de datos
+para correr las pruebas se usaria
 
+```bash
+npm run cypress
+# or
+yarn cypress
+# or
+pnpm cypress
+```
 
-http://localhost:3000/api/seed
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Cualquier Feedback por favor escribirme al correo o a mi Linkedin:
+- [https://www.linkedin.com/in/felipemedinadev/](https://www.linkedin.com/in/felipemedinadev/)
+- felipemedina.developer@gmail.com
 
 ## Learn More
 
@@ -43,8 +63,3 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

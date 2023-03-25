@@ -16,9 +16,17 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@atoms": ["src/components/atoms/index"],
+      "@organisms": ["src/components/organisms/index"],
+      "@molecules":["src/components/molecules/"],
+      "@services":["src/services/index"],
+      "@services/*":["src/services/*"],
+      "@context":["src/context/index"],
+      "@context/*":["src/context/*"],
+
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "context/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/context/index.js"],
   "exclude": ["node_modules"]
 }

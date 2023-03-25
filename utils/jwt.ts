@@ -1,15 +1,15 @@
 import jwt from 'jsonwebtoken'
 
-
-export const signToken = (_id: string, email: string) => {
+// firma del token
+export const signToken = (email: string, name: string) => {
     const sign = process.env.JWT_SECRET_SEED
     if (!sign) throw new Error('Ther isnt seed of JWT in .env')
 
     return jwt.sign(
         //payload
         {
-            _id,
-            email
+            email,
+            name
         },
         //seed
         sign,
@@ -18,22 +18,21 @@ export const signToken = (_id: string, email: string) => {
             expiresIn: "30d"
         }
     )
-
 }
-export const isValidToken = (token: string): Promise<string> => {
+
+// validar token
+export const isValidToken = (token: string): Promise<{ name: string; email: any; }> => {
     const sign = process.env.JWT_SECRET_SEED
     if (!sign) throw new Error('Ther isnt seed of JWT in .env')
 
     return new Promise((resolve, reject) => {
         try {
             jwt.verify(token, sign || '', (err, payload) => {
-                if (err) return reject('JWT no es valido')
-                const { _id } = payload as { _id: string };
-                resolve(_id)
+                const { email: emailJwt, name } = payload as { email: string, name: string };
+                resolve({ name: name, email: emailJwt })
             })
-
         } catch (error) {
-            reject('JWT no es valido')
+            reject(false)
         }
     })
 

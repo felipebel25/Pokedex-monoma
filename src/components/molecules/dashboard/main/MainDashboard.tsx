@@ -1,9 +1,11 @@
-import { CardPokemon } from "@/components/atoms/cardPokemon/CardPokemon";
-import { IPokemon } from "@/interfaces/pokemons";
-import { getPokemons } from "@/services/pokemons";
-import { Box, CircularProgress, Pagination } from "@mui/material"
 import { useEffect, useState } from "react";
-import { ModalPokemon } from "../../modals/ModalPokemon";
+import { Box, CircularProgress, Pagination } from "@mui/material"
+
+import { CardPokemon } from "@atoms";
+import { getPokemons } from "@services";
+import { ModalPokemon } from "@molecules";
+
+import { IPokemon } from "@/interfaces/pokemons";
 import { styles } from "./stylesMainDashboard"
 
 interface Props {
@@ -24,13 +26,11 @@ export const MainDashboard = ({ data = { count: 0, pokemons: [] } }: Props) => {
   const totalPages = Math.floor(data.count / 10)
 
   useEffect(() => {
+    // si es la pagina uno y son los datos entregados por el SSR no hagas fetch, si cambias de page entonces si haz una peticion
     if (page === 1 && pokemones[0]?.id === 1) return;
     (async () => {
       setIsLoading(true)
       const { pokemons } = await getPokemons((page - 1) * 10)
-      console.log('asd');
-
-
       setPokemones(pokemons)
       setIsLoading(false)
     })();
@@ -41,17 +41,18 @@ export const MainDashboard = ({ data = { count: 0, pokemons: [] } }: Props) => {
   return (
     <>
       <Box sx={styles.main}>
+        {/* --------------loading------------------- */}
         {isLoading ?
-          <Box sx={styles.main}>
-            <CircularProgress color="primary" />
-          </Box>
+          <Box sx={styles.main}><CircularProgress color="primary" /></Box>
           :
+          // ---------------------listado de pokemones---------------
           <Box sx={styles.containerPokemons}>
             {pokemones.map((pokemon: IPokemon) => (
               <CardPokemon key={pokemon.id} onOpen={() => setModalData({ isOpen: true, id: pokemon.id })} pokemon={pokemon} />
             ))}
           </Box>
         }
+        {/* --------------paginacion-------------- */}
         {data.count !== 0 &&
           <Box sx={styles.containerPagination}>
             <Pagination
@@ -64,10 +65,8 @@ export const MainDashboard = ({ data = { count: 0, pokemons: [] } }: Props) => {
           </Box>
         }
       </Box>
-      {modalData.isOpen &&
-        <ModalPokemon idPokemon={modalData.id} onClose={() => setModalData(initValueModal)} />
-      }
-
+      {/* ---------------------Modal Info Pokemon-------------- */}
+      {modalData.isOpen && <ModalPokemon idPokemon={modalData.id} onClose={() => setModalData(initValueModal)} />}
     </>
   )
 }

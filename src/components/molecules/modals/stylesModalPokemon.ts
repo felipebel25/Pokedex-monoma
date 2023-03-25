@@ -1,10 +1,10 @@
 export const styles = {
     modalContainer: {
         position: "relative",
-        width: 400,
+        width: '90%',
+        maxWidth: "600px",
         margin: "0 auto",
         bgcolor: 'background.paper',
-        border: '2px solid #000',
         boxShadow: 24,
         p: 4,
         mt: "5%",
@@ -37,5 +37,15 @@ export const styles = {
         backgroundColor: "info.main",
         fontSize: "1.2rem",
         margin: "3% 2%"
+    },
+    modal: {
+    },
+    button: {
+        width: "8rem",
+        height: "4rem",
+        fontSize: "1rem"
+    },
+    stats: {
+        margin: "5% 0"
     }
 }

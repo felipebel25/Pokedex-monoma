@@ -12,10 +12,10 @@ type Data =
     }
 
 export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
-
     switch (req.method) {
         case "POST":
             return loginUser(req, res)
+            break;
         default:
             res.status(400).json({
                 message: "Not methods or bad request"
@@ -26,6 +26,7 @@ export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
 
 const loginUser = (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const { email: emailReq = '', password: passwordReq = '' } = req.body as { email: string; password: string };
+    const cookies = req.cookies
 
     const { name, email, password } = data;
 
@@ -35,7 +36,7 @@ const loginUser = (req: NextApiRequest, res: NextApiResponse<Data>) => {
         })
     }
 
-    const token = signToken(email, password);
+    const token = signToken(email, name);
 
     res.status(200).json({
         token,

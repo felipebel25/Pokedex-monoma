@@ -1,8 +1,10 @@
-import { IFullPokemon } from "@/interfaces/fullPokemon";
-import { getPokemon } from "@/services/pokemons";
-import { Box, Button, capitalize, Chip, CircularProgress, Modal, Typography } from "@mui/material"
+import { useEffect, useState } from "react"
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Box, Button, capitalize, Chip, CircularProgress, Modal, Typography } from "@mui/material"
+
+import { IFullPokemon } from "@/interfaces/pokemonApi";
+import { getPokemon } from "@services";
+
 import { styles } from "./stylesModalPokemon"
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 export const ModalPokemon = ({ onClose, idPokemon }: Props) => {
     const [pokemon, setPokemon] = useState({} as IFullPokemon)
     const [isLoading, setIsLoading] = useState(true)
+    const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         (async () => {
@@ -20,18 +23,31 @@ export const ModalPokemon = ({ onClose, idPokemon }: Props) => {
             const { isError, data } = await getPokemon(idPokemon)
             setPokemon(data)
             setIsLoading(false)
+            setIsError(isError)
         })();
     }, [])
 
-
-    return (
-        <Modal open={true} onClose={onClose}>
+    // -----------si hay un error-----------------
+    if (isError) return (
+        <Modal sx={styles.modal} open={true} onClose={onClose}>
             <Box sx={styles.modalContainer}>
+                <Typography>An error ocurred, please try again later.</Typography>
+                <Box>
+                    <Button sx={styles.button} onClick={onClose} variant="outlined" color="primary">Cerrar</Button>
+                </Box>
+            </Box>
+        </Modal>
+    )
+    return (
+        <Modal sx={styles.modal} open={true} onClose={onClose}>
+            <Box sx={styles.modalContainer}>
+                {/* --------------loading-------------- */}
                 {isLoading ?
                     <Box sx={styles.loading}>
                         <CircularProgress color="primary" />
                     </Box>
                     :
+                    // --------------info pokemon----------------
                     <Box sx={styles.pokemon}>
                         <Box sx={styles.imgSection}>
                             <Image
@@ -44,24 +60,21 @@ export const ModalPokemon = ({ onClose, idPokemon }: Props) => {
                                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
                             />
                         </Box>
-                        <Typography variant="h2" component="h2">
-                            {capitalize(pokemon.name)}
-                        </Typography>
+                        <Typography variant="h2" component="h2">{capitalize(pokemon.name)}</Typography>
                         <Box sx={styles.types}>
                             {pokemon.types.map(({ type }) => (
                                 <Chip key={type.name} sx={styles.typesButton} label={type.name} />
                             ))}
                         </Box>
-                        <Box>
+                        <Box sx={styles.stats}>
                             <Typography>Peso: {pokemon.weight} lbs</Typography>
                             <Typography>Altura: {pokemon.height}</Typography>
-
                             {pokemon.stats.map((stat) => (
                                 <Typography key={stat.stat.name}>{stat.stat.name} : {stat.base_stat}</Typography>
                             ))}
                         </Box>
                         <Box>
-                            <Button onClick={onClose} variant="outlined" color="primary">Cerrar</Button>
+                            <Button sx={styles.button} onClick={onClose} variant="outlined" color="primary">Cerrar</Button>
                         </Box>
                     </Box>
                 }

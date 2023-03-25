@@ -1,3 +1,4 @@
+import { IpokemonApi } from "@/interfaces/pokemonApi";
 import axios from "axios";
 
 export const getPokemons = async (offset = 0) => {
@@ -19,7 +20,8 @@ export const getPokemons = async (offset = 0) => {
 
 export const getPokemon = async (id = 0) => {
     let isError = false;
-    const response: any = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const response: IpokemonApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+
     const { data } = response;
     if (response.status !== 200) {
         isError = true

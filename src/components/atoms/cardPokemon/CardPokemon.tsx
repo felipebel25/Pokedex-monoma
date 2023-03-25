@@ -1,6 +1,5 @@
 import { IPokemon } from "@/interfaces/pokemons"
 import { Box, capitalize, Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material"
-import { Dispatch, SetStateAction } from "react";
 import { styles } from "./stylesCardPokemon"
 
 interface Props {

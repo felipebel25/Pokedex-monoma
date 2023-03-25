@@ -12,12 +12,13 @@ export const styles = {
         height: "80%",
         display: "flex",
         alignItems: 'center',
-        marginRight: "2rem"
+        marginRight: "2rem",
+        cursor: "pointer"
     },
     logoImg: {
         width: "3rem",
     },
-   
+
 
 
 }

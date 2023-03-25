@@ -1,10 +1,10 @@
 export const styles = {
     main: {
-        height: "93%",
+        height: "94%",
         display: 'flex',
         flexDirection: "column",
         justifyContent: "center",
-        margin: "0 auto"
+        margin: "0 auto",
 
     },
     containerPokemons: {
